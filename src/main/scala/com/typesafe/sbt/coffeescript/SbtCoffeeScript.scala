@@ -8,7 +8,7 @@ import sbt.Keys._
 
 object Import {
 
-  object CoffeescriptKeys {
+  object CoffeeScriptKeys {
     val coffeescript = TaskKey[Seq[File]]("coffeescript", "Invoke the CoffeeScript compiler.")
 
     val bare = SettingKey[Boolean]("coffeescript-bare", "Compiles JavaScript that isn't wrapped in a function.")
@@ -28,9 +28,11 @@ object SbtCoffeeScript extends AutoPlugin {
   import SbtWeb.autoImport._
   import WebKeys._
   import SbtJsTask.autoImport.JsTaskKeys._
-  import autoImport.CoffeescriptKeys._
+  import autoImport.CoffeeScriptKeys._
 
   val coffeeScriptUnscopedSettings = Seq(
+
+    includeFilter := "*.coffee" | "*.litcoffee",
 
     jsOptions := JsObject(
       "bare" -> JsBoolean(bare.value),
@@ -48,8 +50,7 @@ object SbtCoffeeScript extends AutoPlugin {
       inConfig(TestAssets)(coffeeScriptUnscopedSettings) ++
       Seq(
         moduleName := "coffeescript",
-        shellFile := "coffee.js",
-        fileFilter := GlobFilter("*.coffee") | GlobFilter("*.litcoffee"),
+        shellFile := getClass.getClassLoader.getResource("coffee.js"),
 
         taskMessage in Assets := "CoffeeScript compiling",
         taskMessage in TestAssets := "CoffeeScript test compiling"
