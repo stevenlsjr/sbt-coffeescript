@@ -11,7 +11,7 @@ To use this plugin use the addSbtPlugin command within your project's `plugins.s
 
 Your project's build file also needs to enable sbt-web plugins. For example with build.sbt:
 
-    lazy val root = (project in file(".")).addPlugins(SbtWeb)
+    lazy val root = (project in file(".")).enablePlugins(SbtWeb)
 
 Once configured, any `*.coffee` or `*.litcoffee` files placed in `src/main/assets` will be compiled to JavaScript code in `target/web/public`.
 
