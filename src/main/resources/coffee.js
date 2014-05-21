@@ -60,6 +60,9 @@
                     throwIfErr(e);
 
                     var js = compileResult.js;
+                    if (js === undefined) {
+                        js = compileResult;
+                    }
                     if (options.sourceMap) {
                         js = js + "\n//# sourceMappingURL=" + path.basename(sourceMapOutput) + "\n";
                     }
