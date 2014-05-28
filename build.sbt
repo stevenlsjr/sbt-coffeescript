@@ -4,7 +4,7 @@ organization := "com.typesafe.sbt"
 
 name := "sbt-coffeescript"
 
-version := "1.0.0-SNAPSHOT"
+version := "1.0.0"
 
 scalaVersion := "2.10.4"
 
@@ -23,7 +23,7 @@ resolvers ++= Seq(
   Resolver.mavenLocal
 )
 
-addSbtPlugin("com.typesafe.sbt" % "sbt-js-engine" % "1.0.0-RC2")
+addSbtPlugin("com.typesafe.sbt" % "sbt-js-engine" % "1.0.0")
 
 publishMavenStyle := false
 
